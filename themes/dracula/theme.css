@@ -1,0 +1,709 @@
+/*
+ * Dracula Theme for IDA 9.x
+ *
+ * This is a native IDA CSS/QSS theme. Importing IDA's current dark theme is
+ * intentional: it preserves the version-specific widget rules and bundled
+ * icons added by newer IDA releases, while the rules below apply Dracula's
+ * palette to the UI and analysis views.
+ */
+
+@importtheme "dark";
+
+/* Dracula Classic */
+@def dracula_bg                 #282A36;
+@def dracula_bg_darker          #21222C;
+@def dracula_bg_lighter         #343746;
+@def dracula_current            #44475A;
+@def dracula_border             #424450;
+@def dracula_border_faint       #2D2F3D;
+@def dracula_fg                 #F8F8F2;
+@def dracula_comment            #6272A4;
+@def dracula_cyan               #8BE9FD;
+@def dracula_green              #50FA7B;
+@def dracula_orange             #FFB86C;
+@def dracula_pink               #FF79C6;
+@def dracula_purple             #BD93F9;
+@def dracula_red                #FF5555;
+@def dracula_yellow             #F1FA8C;
+
+/* Opaque blends used where IDA expects a background rather than an overlay. */
+@def dracula_find               #665947;
+@def dracula_mark_blue          #5C4F7A;
+@def dracula_mark_cyan          #415D63;
+@def dracula_mark_green         #365F46;
+@def dracula_mark_red           #61434D;
+@def dracula_mark_orange        #755C49;
+@def dracula_mark_purple        #75465B;
+@def dracula_diff_add           #2D433E;
+@def dracula_diff_change        #34414E;
+@def dracula_diff_remove        #422F3A;
+@def dracula_radius             3px;
+
+/* ---------------------------------------------------------------------- */
+/* Qt chrome                                                              */
+/* ---------------------------------------------------------------------- */
+
+QWidget
+{
+    background-color: ${dracula_bg};
+    color: ${dracula_fg};
+    selection-background-color: ${dracula_current};
+    selection-color: ${dracula_fg};
+}
+
+QWidget:disabled
+{
+    color: ${dracula_comment};
+}
+
+QLabel,
+QCheckBox,
+QRadioButton
+{
+    background: transparent;
+}
+
+QMenuBar,
+QMenu
+{
+    background-color: ${dracula_bg_darker};
+    color: ${dracula_fg};
+}
+
+QMenu
+{
+    border: 1px solid ${dracula_border};
+}
+
+QMenuBar::item
+{
+    background: transparent;
+    padding: 4px 8px;
+}
+
+QMenuBar::item:selected,
+QMenuBar::item:pressed,
+QMenu::item:selected
+{
+    background-color: ${dracula_current};
+    color: ${dracula_fg};
+}
+
+QMenu::item:disabled
+{
+    color: ${dracula_comment};
+}
+
+QMenu::separator
+{
+    height: 1px;
+    margin: 4px 8px;
+    background-color: ${dracula_border};
+}
+
+QLineEdit,
+QTextEdit,
+QPlainTextEdit,
+QAbstractSpinBox,
+QComboBox
+{
+    background-color: ${dracula_bg_lighter};
+    color: ${dracula_fg};
+    border: 1px solid ${dracula_border};
+    border-radius: ${dracula_radius};
+}
+
+QLineEdit,
+QAbstractSpinBox,
+QComboBox
+{
+    min-height: 20px;
+}
+
+QLineEdit:hover,
+QTextEdit:hover,
+QPlainTextEdit:hover,
+QAbstractSpinBox:hover,
+QComboBox:hover
+{
+    border-color: ${dracula_comment};
+}
+
+QLineEdit:focus,
+QTextEdit:focus,
+QPlainTextEdit:focus,
+QAbstractSpinBox:focus,
+QComboBox:focus
+{
+    border-color: ${dracula_purple};
+}
+
+QLineEdit:read-only,
+QTextEdit:read-only,
+QPlainTextEdit:read-only
+{
+    background-color: ${dracula_bg};
+}
+
+QComboBox > QLineEdit,
+QComboBox > QLineEdit:hover,
+QComboBox > QLineEdit:focus
+{
+    min-height: default;
+    border: none;
+}
+
+QComboBox::drop-down
+{
+    width: 18px;
+    border-left: 1px solid ${dracula_border};
+}
+
+QComboBox QAbstractItemView
+{
+    background-color: ${dracula_bg_lighter};
+    color: ${dracula_fg};
+    border: 1px solid ${dracula_border};
+}
+
+QPushButton
+{
+    min-height: 20px;
+    padding: 1px 8px;
+    background-color: ${dracula_bg_lighter};
+    color: ${dracula_fg};
+    border: 1px solid ${dracula_border};
+    border-radius: ${dracula_radius};
+}
+
+QPushButton:hover
+{
+    background-color: ${dracula_current};
+    border-color: ${dracula_purple};
+}
+
+QPushButton:pressed
+{
+    background-color: ${dracula_mark_blue};
+    border-color: ${dracula_purple};
+}
+
+QPushButton:default
+{
+    background-color: ${dracula_purple};
+    color: ${dracula_bg_darker};
+    border-color: ${dracula_purple};
+}
+
+QPushButton:disabled
+{
+    background-color: ${dracula_bg};
+    color: ${dracula_comment};
+    border-color: ${dracula_border_faint};
+}
+
+QAbstractItemView,
+QTableView,
+QTreeView,
+QListView
+{
+    background-color: ${dracula_bg};
+    alternate-background-color: ${dracula_bg_lighter};
+    color: ${dracula_fg};
+    border: 1px solid ${dracula_border_faint};
+    outline: none;
+}
+
+QTreeView::item:hover,
+QListView::item:hover,
+QTableView::item:hover
+{
+    background-color: ${dracula_bg_lighter};
+}
+
+QTreeView::item:selected,
+QListView::item:selected,
+QTableView::item:selected,
+QTreeView::branch:selected
+{
+    background-color: ${dracula_current};
+    color: ${dracula_fg};
+}
+
+QHeaderView::section
+{
+    padding: 3px 6px;
+    background-color: ${dracula_bg_darker};
+    color: ${dracula_fg};
+    border: none;
+    border-right: 1px solid ${dracula_border_faint};
+    border-bottom: 1px solid ${dracula_border};
+}
+
+QTableCornerButton::section
+{
+    background-color: ${dracula_bg_darker};
+    border: 1px solid ${dracula_border};
+}
+
+QTabWidget::pane
+{
+    border: 1px solid ${dracula_border_faint};
+}
+
+QTabBar::tab
+{
+    padding: 5px 9px;
+    background-color: ${dracula_bg_darker};
+    color: ${dracula_comment};
+    border: none;
+    border-bottom: 2px solid transparent;
+}
+
+QTabBar::tab:hover
+{
+    background-color: ${dracula_bg_lighter};
+    color: ${dracula_fg};
+}
+
+QTabBar::tab:selected
+{
+    background-color: ${dracula_bg};
+    color: ${dracula_fg};
+    border-bottom-color: ${dracula_purple};
+}
+
+QScrollBar
+{
+    width: 14px;
+    height: 14px;
+    background-color: ${dracula_bg_darker};
+    border: none;
+}
+
+QScrollBar::handle
+{
+    min-width: 24px;
+    min-height: 24px;
+    margin: 3px;
+    background-color: ${dracula_border};
+    border-radius: 4px;
+}
+
+QScrollBar::handle:hover
+{
+    background-color: ${dracula_comment};
+}
+
+QScrollBar::handle:pressed
+{
+    background-color: ${dracula_purple};
+}
+
+QScrollBar::add-line,
+QScrollBar::sub-line
+{
+    width: 0;
+    height: 0;
+    border: none;
+}
+
+QScrollBar::add-page,
+QScrollBar::sub-page
+{
+    background: transparent;
+}
+
+QToolBar
+{
+    background-color: ${dracula_bg_darker};
+    border: none;
+    border-bottom: 1px solid ${dracula_border_faint};
+}
+
+QToolBar::separator
+{
+    background-color: ${dracula_border};
+    width: 1px;
+    height: 1px;
+    margin: 4px;
+}
+
+DockWidgetTitle,
+DockAreaDragTitle
+{
+    background-color: ${dracula_bg_darker};
+    color: ${dracula_fg};
+    border: none;
+    border-bottom: 1px solid ${dracula_border_faint};
+}
+
+DockWidgetTitle[active="true"]
+{
+    background-color: ${dracula_bg_lighter};
+    border-bottom-color: ${dracula_purple};
+}
+
+DockWidget > QWidget > QAbstractButton,
+IDADockWidget > QWidget > QAbstractButton
+{
+    background-color: transparent;
+    border: none;
+}
+
+QGroupBox,
+EditContainer,
+ChooserContainer
+{
+    border: 1px solid ${dracula_border};
+    border-radius: ${dracula_radius};
+    margin-top: 6px;
+}
+
+QGroupBox::title
+{
+    subcontrol-origin: margin;
+    subcontrol-position: top left;
+    left: 7px;
+    padding: 0 4px;
+    color: ${dracula_cyan};
+}
+
+QToolTip,
+QTipLabel,
+.hint
+{
+    padding: 4px;
+    background-color: ${dracula_bg_lighter};
+    color: ${dracula_fg};
+    border: 1px solid ${dracula_purple};
+    border-radius: ${dracula_radius};
+}
+
+QStatusBar
+{
+    background-color: ${dracula_bg_darker};
+    color: ${dracula_fg};
+}
+
+QStatusBar::item
+{
+    border: none;
+}
+
+QSplitter::handle
+{
+    background-color: ${dracula_border_faint};
+}
+
+QProgressBar
+{
+    color: ${dracula_fg};
+    background-color: ${dracula_bg_lighter};
+    border: 1px solid ${dracula_border};
+    border-radius: ${dracula_radius};
+    text-align: center;
+}
+
+QProgressBar::chunk
+{
+    background-color: ${dracula_purple};
+}
+
+/* Preserve the compact buttons used by the navigation and CLI widgets. */
+TNavBand > QPushButton,
+nav_scroll_button_t,
+RegJumpButton,
+CLIWidget > QGroupBox > QPushButton,
+CLIWidget > QGroupBox > QPushButton:hover,
+CLIWidget > QGroupBox > QPushButton:focus
+{
+    min-width: 0;
+    min-height: 0;
+    padding: 0;
+    background: transparent;
+    border: none;
+}
+
+CLIWidget > QGroupBox
+{
+    margin-top: 0;
+}
+
+/* ---------------------------------------------------------------------- */
+/* Analysis views: listing, pseudocode, graph, debugger, and hex views     */
+/* ---------------------------------------------------------------------- */
+
+CustomIDAMemo
+{
+    background-color: ${dracula_bg};
+    border: none;
+
+    qproperty-line-fg-default: ${dracula_fg};
+    qproperty-line-fg-regular-comment: ${dracula_comment};
+    qproperty-line-fg-repeatable-comment: ${dracula_comment};
+    qproperty-line-fg-automatic-comment: ${dracula_comment};
+    qproperty-line-fg-insn: ${dracula_pink};
+    qproperty-line-fg-dummy-data-name: ${dracula_comment};
+    qproperty-line-fg-regular-data-name: ${dracula_cyan};
+    qproperty-line-fg-demangled-name: ${dracula_green};
+    qproperty-line-fg-punctuation: ${dracula_fg};
+    qproperty-line-fg-charlit-in-insn: ${dracula_yellow};
+    qproperty-line-fg-strlit-in-insn: ${dracula_yellow};
+    qproperty-line-fg-numlit-in-insn: ${dracula_purple};
+    qproperty-line-fg-void-opnd: ${dracula_red};
+    qproperty-line-fg-code-xref: ${dracula_green};
+    qproperty-line-fg-data-xref: ${dracula_cyan};
+    qproperty-line-fg-code-xref-to-tail: ${dracula_red};
+    qproperty-line-fg-data-xref-to-tail: ${dracula_orange};
+    qproperty-line-fg-error: ${dracula_red};
+    qproperty-line-fg-line-prefix: ${dracula_comment};
+    qproperty-line-fg-opcode-byte: ${dracula_comment};
+    qproperty-line-fg-extra-line: ${dracula_comment};
+    qproperty-line-fg-alt-opnd: ${dracula_orange};
+    qproperty-line-fg-hidden: ${dracula_comment};
+    qproperty-line-fg-libfunc: ${dracula_cyan};
+    qproperty-line-fg-locvar: ${dracula_fg};
+    qproperty-line-fg-dummy-code-name: ${dracula_comment};
+    qproperty-line-fg-asm-directive: ${dracula_pink};
+    qproperty-line-fg-macro: ${dracula_orange};
+    qproperty-line-fg-strlit-in-data: ${dracula_yellow};
+    qproperty-line-fg-charlit-in-data: ${dracula_yellow};
+    qproperty-line-fg-numlit-in-data: ${dracula_purple};
+    qproperty-line-fg-keyword: ${dracula_pink};
+    qproperty-line-fg-register-name: ${dracula_cyan};
+    qproperty-line-fg-import-name: ${dracula_pink};
+    qproperty-line-fg-segment-name: ${dracula_yellow};
+    qproperty-line-fg-dummy-unknown-name: ${dracula_comment};
+    qproperty-line-fg-code-name: ${dracula_green};
+    qproperty-line-fg-unknown-name: ${dracula_purple};
+    qproperty-line-fg-collapsed-line: ${dracula_comment};
+    qproperty-line-fg-patched-bytes: ${dracula_red};
+    qproperty-line-fg-unsaved-changes: ${dracula_orange};
+
+    qproperty-line-bg-default: ${dracula_bg};
+    qproperty-line-bg-selected: ${dracula_current};
+    qproperty-caret: ${dracula_fg};
+
+    qproperty-line-pfx-libfunc: ${dracula_cyan};
+    qproperty-line-pfx-func: ${dracula_green};
+    qproperty-line-pfx-insn: ${dracula_pink};
+    qproperty-line-pfx-data: ${dracula_yellow};
+    qproperty-line-pfx-unexplored: ${dracula_comment};
+    qproperty-line-pfx-extern: ${dracula_purple};
+    qproperty-line-pfx-current-line: ${dracula_orange};
+    qproperty-line-pfx-current-item: ${dracula_pink};
+    qproperty-line-pfx-lumina: ${dracula_green};
+
+    qproperty-line-bg-highlight: ${dracula_find};
+    qproperty-line-bg-highlight-2: ${dracula_mark_orange};
+    qproperty-line-bg-highlight-3: ${dracula_mark_purple};
+    qproperty-line-bg-highlight-4: ${dracula_mark_cyan};
+    qproperty-line-bg-highlight-5: ${dracula_mark_red};
+    qproperty-line-bg-highlight-6: ${dracula_mark_green};
+    qproperty-line-bg-highlight-7: ${dracula_mark_blue};
+    qproperty-line-bg-highlight-8: ${dracula_border};
+    qproperty-line-bgovl-current-line: rgba(68, 71, 90, 0.55);
+    qproperty-line-bgovl-trace: rgba(241, 250, 140, 0.25);
+    qproperty-line-bgovl-trace-ovl: rgba(255, 184, 108, 0.25);
+    qproperty-line-bgovl-extra-1: rgba(80, 250, 123, 0.22);
+    qproperty-line-bgovl-extra-2: rgba(139, 233, 253, 0.22);
+    qproperty-line-bgovl-extra-3: rgba(255, 184, 108, 0.22);
+    qproperty-line-bgovl-extra-4: rgba(255, 121, 198, 0.22);
+    qproperty-line-bgovl-extra-5: rgba(189, 147, 249, 0.22);
+    qproperty-line-bgovl-extra-6: rgba(255, 85, 85, 0.22);
+    qproperty-line-bgovl-extra-7: rgba(241, 250, 140, 0.22);
+    qproperty-line-bgovl-extra-8: rgba(98, 114, 164, 0.24);
+    qproperty-line-bgovl-extra-9: rgba(255, 85, 85, 0.28);
+    qproperty-line-bgovl-extra-10: rgba(80, 250, 123, 0.28);
+    qproperty-line-bgovl-extra-11: rgba(255, 121, 198, 0.28);
+    qproperty-line-bgovl-extra-12: rgba(255, 184, 108, 0.28);
+    qproperty-line-bgovl-extra-13: rgba(189, 147, 249, 0.28);
+    qproperty-line-bgovl-extra-14: rgba(98, 114, 164, 0.30);
+    qproperty-line-bgovl-extra-15: rgba(241, 250, 140, 0.28);
+    qproperty-line-bgovl-extra-16: rgba(80, 250, 123, 0.32);
+
+    qproperty-graph-bg-top: ${dracula_bg};
+    qproperty-graph-bg-bottom: ${dracula_bg_darker};
+    qproperty-graph-node-title-normal: ${dracula_bg_lighter};
+    qproperty-graph-node-title-selected: ${dracula_mark_blue};
+    qproperty-graph-node-title-current: ${dracula_mark_green};
+    qproperty-graph-node-frame-group: ${dracula_yellow};
+    qproperty-graph-node-shadow: ${dracula_bg_darker};
+    qproperty-graph-node-high1: ${dracula_diff_add};
+    qproperty-graph-node-high2: ${dracula_diff_remove};
+    qproperty-graph-node-foreign: ${dracula_red};
+    qproperty-graph-edge-normal: ${dracula_cyan};
+    qproperty-graph-edge-yes: ${dracula_green};
+    qproperty-graph-edge-no: ${dracula_red};
+    qproperty-graph-edge-high: ${dracula_yellow};
+    qproperty-graph-edge-selected: ${dracula_purple};
+    qproperty-graph-node-frame-selected: ${dracula_purple};
+
+    qproperty-line-bg-bpt-enabled: ${dracula_mark_red};
+    qproperty-line-bg-bpt-disabled: ${dracula_mark_green};
+    qproperty-line-bg-bpt-unavailable: ${dracula_mark_orange};
+    qproperty-line-bgovl-bookmark: rgba(189, 147, 249, 0.20);
+    qproperty-bookmark-star-outline: ${dracula_purple};
+
+    qproperty-line-bgovl-diff-region-pick: ${dracula_diff_add};
+    qproperty-line-bgovl-diff-region-leave: ${dracula_diff_change};
+    qproperty-line-bgovl-diff-region-conflict: ${dracula_diff_remove};
+    qproperty-line-bgovl-diff-region-pick-current: ${dracula_mark_green};
+    qproperty-line-bgovl-diff-region-leave-current: ${dracula_mark_cyan};
+    qproperty-line-bgovl-diff-region-conflict-current: ${dracula_mark_red};
+}
+
+CustomIDAMemo[debugging="true"]
+{
+    qproperty-line-bg-default: ${dracula_bg_darker};
+    qproperty-line-bgovl-current-ip: rgba(189, 147, 249, 0.38);
+}
+
+CustomIDAMemo[hints="true"]
+{
+    qproperty-line-bg-default: ${dracula_bg_lighter};
+}
+
+IDAViewHost,
+IDAView,
+hexview_t,
+ecfringe_t
+{
+    background-color: ${dracula_bg};
+}
+
+GraphMiniView
+{
+    qproperty-fog: rgba(33, 34, 44, 0.58);
+    qproperty-crosshairs: rgba(241, 250, 140, 1.0);
+}
+
+TextArrows
+{
+    background: transparent;
+    qproperty-jump-in-function: ${dracula_comment};
+    qproperty-jump-external-to-function: ${dracula_cyan};
+    qproperty-jump-under-cursor: ${dracula_orange};
+    qproperty-jump-target: ${dracula_green};
+    qproperty-register-target: ${dracula_purple};
+    qproperty-bpt-possible: ${dracula_red};
+}
+
+TCpuRegs,
+TCpuRegs[os-dark-theme="true"]
+{
+    background-color: ${dracula_bg_darker};
+    qproperty-register-defined: ${dracula_fg};
+    qproperty-register-changed: ${dracula_yellow};
+    qproperty-register-edited: ${dracula_orange};
+    qproperty-register-unavailable: ${dracula_comment};
+}
+
+TCpuRegs ui_label_t,
+TCpuRegs ui_label_t[os-dark-theme="true"]
+{
+    color: ${dracula_comment};
+}
+
+navband_t,
+navband_t[os-dark-theme="true"]
+{
+    qproperty-lib-function: ${dracula_cyan};
+    qproperty-function: ${dracula_green};
+    qproperty-code: ${dracula_pink};
+    qproperty-data: ${dracula_yellow};
+    qproperty-undefined: ${dracula_comment};
+    qproperty-extern: ${dracula_purple};
+    qproperty-lumina-function: ${dracula_green};
+    qproperty-hl-lib-function: ${dracula_cyan};
+    qproperty-hl-function: ${dracula_green};
+    qproperty-hl-code: ${dracula_pink};
+    qproperty-hl-data: ${dracula_yellow};
+    qproperty-hl-undefined: ${dracula_comment};
+    qproperty-hl-extern: ${dracula_purple};
+    qproperty-hl-lumina-function: ${dracula_green};
+    qproperty-hl-outline: ${dracula_fg};
+    qproperty-error: ${dracula_red};
+    qproperty-gap: ${dracula_bg_darker};
+    qproperty-cursor: ${dracula_yellow};
+    qproperty-auto-analysis-cursor: ${dracula_orange};
+}
+
+/* ---------------------------------------------------------------------- */
+/* IDA's embedded text editors (IDC, IDAPython, source, and script views)   */
+/* ---------------------------------------------------------------------- */
+
+text_area_t,
+text_area_t[os-dark-theme="true"]
+{
+    qproperty-keyword1-fg: ${dracula_pink};
+    qproperty-keyword2-fg: ${dracula_cyan};
+    qproperty-keyword3-fg: ${dracula_orange};
+    qproperty-string-fg: ${dracula_yellow};
+    qproperty-comment-fg: ${dracula_comment};
+    qproperty-preprocessor-fg: ${dracula_pink};
+    qproperty-number-fg: ${dracula_purple};
+    qproperty-user1-fg: ${dracula_cyan};
+    qproperty-user2-fg: ${dracula_green};
+    qproperty-user3-fg: ${dracula_purple};
+    qproperty-user4-fg: ${dracula_orange};
+}
+
+text_area_t QWidget
+{
+    background-color: transparent;
+}
+
+text_area_t text_area_margin_widget_t
+{
+    color: ${dracula_comment};
+    qproperty-header-color: ${dracula_cyan};
+}
+
+log_widget_t,
+MainMsgList
+{
+    background-color: ${dracula_bg};
+    color: ${dracula_fg};
+}
+
+chooser_widget_t,
+chooser_widget_t[os-dark-theme="true"],
+standalone_dirtree_widget_t,
+standalone_dirtree_widget_t[os-dark-theme="true"],
+TChooser
+{
+    qproperty-highlight-bg-default: ${dracula_find};
+    qproperty-highlight-bg-selected: ${dracula_mark_blue};
+    qproperty-cut-text-color-default: ${dracula_comment};
+    qproperty-cut-text-color-selected: ${dracula_fg};
+}
+
+TChooser,
+generic_dirtree_widget_t
+{
+    qproperty-highlight-bg-diff-region-pick: ${dracula_diff_add};
+    qproperty-highlight-bg-diff-region-leave: ${dracula_diff_change};
+    qproperty-highlight-bg-diff-region-conflict: ${dracula_diff_remove};
+    qproperty-highlight-bg-diff-region-pick-current: ${dracula_mark_green};
+    qproperty-highlight-bg-diff-region-leave-current: ${dracula_mark_cyan};
+    qproperty-highlight-bg-diff-region-conflict-current: ${dracula_mark_red};
+}
+
+diff_fringe_t
+{
+    background-color: ${dracula_bg};
+    qproperty-diff-region-pick: ${dracula_diff_add};
+    qproperty-diff-region-pick-boundaries: ${dracula_mark_green};
+    qproperty-diff-region-pick-current: ${dracula_mark_green};
+    qproperty-diff-region-pick-current-boundaries: ${dracula_green};
+    qproperty-diff-region-leave: ${dracula_diff_change};
+    qproperty-diff-region-leave-boundaries: ${dracula_mark_cyan};
+    qproperty-diff-region-leave-current: ${dracula_mark_cyan};
+    qproperty-diff-region-leave-current-boundaries: ${dracula_cyan};
+    qproperty-diff-region-conflict: ${dracula_diff_remove};
+    qproperty-diff-region-conflict-boundaries: ${dracula_mark_red};
+    qproperty-diff-region-conflict-current: ${dracula_mark_red};
+    qproperty-diff-region-conflict-current-boundaries: ${dracula_red};
+}
